@@ -1,11 +1,10 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import appRoute from './src/route/';
+import appRoute from './src/route/index';
 import { PORT } from './src/config/secrete';
-import { prisma } from './src/config/prisma';
 import cors from 'cors'
-import { errorMiddleware } from './src/middleware/error';
+import  errorMiddleware  from './src/middleware/error';
 
 
 const app = express();
@@ -21,7 +20,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(errorMiddleware);
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 
 // Routes
