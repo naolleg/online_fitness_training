@@ -3,7 +3,7 @@ import { prisma } from "../../config/prisma.js";
 import userSchema from "./userSchema.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import  STATUS from "@prisma/client";
+import  Status from "@prisma/client";
 import { SECRET } from "../../config/secrete.js";
 import { generatePassword } from "../../util/generateor.js"
 import { sendEmail } from "../../util/emailSender.js";
@@ -34,7 +34,7 @@ const userController = {
         message: "password is incorrect",
       });
     }
-    if (user.status != STATUS.ACTIVE) {
+    if (user.status != Status.) {
       return res.status(404).json({
         success: false,
         message: "user is not active",
