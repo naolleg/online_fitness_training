@@ -1,0 +1,26 @@
+{
+  "trainers": [
+    {
+      "id": "06e1",
+      "trainerFname": "naol",
+      "trainerLname": "legese",
+      "traineremail": "naol@gmail.com",
+      "trainerphonenum": "0988777666",
+      "traineraddress": "addiss ababa",
+      "trainerage": "30",
+      "trainergender": "F",
+      "traineryearofExpriance": "5"
+    },
+    {
+      "id": "52fa",
+      "trainerFname": "zerubabel",
+      "trainerLname": "tigistu",
+      "traineremail": "zeru@gmail.com",
+      "trainerphonenum": "0988998899",
+      "traineraddress": "addiss ababa",
+      "trainerage": "35",
+      "trainergender": "M",
+      "traineryearofExpriance": "10"
+    }
+  ]
+}
