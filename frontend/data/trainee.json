@@ -1,0 +1,49 @@
+{
+  "trainee": [
+    {
+      "id": "06e1",
+      "traineeFname": "naol",
+      "traineeLname": "legese",
+      "traineeAge": "30",
+      "traineeEmail": "naol@gmail.com",
+      "traineePhonenum": "0988777666",
+      "traineeBMI": "20",
+      "traineeAddress": "addiss ababa",
+      "traineegender": "F",
+      "medicalInfo": "yes",
+      "traineeGoalWeight": "330",
+      "traineewieght": "23",
+      "traineeheight": "28"
+    },
+    {
+      "id": "3eb6",
+      "traineeFname": "sikar",
+      "traineeLname": "yosef",
+      "traineeEmail": "se@gmail.com",
+      "traineePhonenum": "09888888999",
+      "traineeAddress": "asda",
+      "traineeAge": "22",
+      "traineegender": "M",
+      "medicalInfo": "",
+      "traineewieght": "222",
+      "traineeheight": "22",
+      "traineeBMI": "22",
+      "traineeGoalWeight": "220"
+    },
+    {
+      "id": "87d9",
+      "traineeFname": "zerubabel",
+      "traineeLname": "dametw",
+      "traineeEmail": "zeru@gmail.com",
+      "traineePhonenum": "0965199682",
+      "traineeAddress": "Jimma",
+      "traineeAge": "23",
+      "traineegender": "M",
+      "medicalInfo": "Medical Information\n",
+      "traineeWeight": "59",
+      "traineeHeight": "40",
+      "traineeBMI": "21",
+      "traineeGoalWeight": "20"
+    }
+  ]
+}

@@ -2,8 +2,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext()
+const Base_urlTrainer = "http://localhost:8000"
+const Base_urlTrainee = "http://localhost:8001"
 
 function Userprovider({ children }) {
+    // Trainers state
     const [trainers, setTrainer] = useState([])
     const [trainerFname, setTreainerFname] = useState("")
     const [trainerLname, setTreainerLname] = useState("")
@@ -13,11 +16,16 @@ function Userprovider({ children }) {
     const [trainerage, setTreainerage] = useState("")
     const [trainergender, setTreainergender] = useState("")
     const [traineryearofExpriance, setTreaineryearofExpriance] = useState("")
+
+
+
+
+
     const navigate = useNavigate()
     useEffect(() => {
         async function fetchtrainersData() {
             try {
-                const res = await fetch("http://localhost:8000/trainers")
+                const res = await fetch(`${Base_urlTrainer}/trainers`)
                 const data = await res.json()
                 console.log(data)
                 setTrainer(data)
@@ -42,7 +50,7 @@ function Userprovider({ children }) {
         }
 
         try {
-            const res = await fetch("http://localhost:8000/trainers", {
+            const res = await fetch(`${Base_urlTrainer}/trainers`, {
                 method: 'POST',
                 body: JSON.stringify(trainerInfo),
                 headers: {
@@ -62,12 +70,33 @@ function Userprovider({ children }) {
     }
     async function deleteuser(id) {
         try {
-            await fetch(`http://localhost:8000/trainers/${id}`, { method: "DELETE" })
+            await fetch(`${Base_urlTrainer}/trainers/${id}`, { method: "DELETE" })
             setTrainer((user) => user.filter((users) => users.id !== id))
         } catch (error) {
             throw new Error("There was an error deleting user")
         }
     }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //trainee State
+
+    const [trainees, setTrainees] = useState([])
+
+    useEffect(() => {
+        async function fetchtraineeData() {
+            try {
+                const res = await fetch(`${Base_urlTrainee}/trainee`)
+                const data = await res.json()
+                // console.log(data)
+                setTrainees(data)
+            } catch (error) {
+                throw new Error("error while fetching trainee data")
+            }
+        }
+        fetchtraineeData()
+    }, [])
+
+
     return (< UserContext.Provider
         value={{
             trainers,
@@ -87,7 +116,11 @@ function Userprovider({ children }) {
             setTreaineryearofExpriance,
             setTreaineraddress,
             deleteuser,
-            addtrainer
+            addtrainer,
+
+
+
+            trainees,
 
         }}
     > {children}</ UserContext.Provider>)

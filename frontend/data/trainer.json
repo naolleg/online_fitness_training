@@ -21,6 +21,28 @@
       "trainerage": "35",
       "trainergender": "M",
       "traineryearofExpriance": "10"
+    },
+    {
+      "id": "1344",
+      "trainerFname": "nabon",
+      "trainerLname": "grima",
+      "traineremail": "nabon@gmail.com",
+      "trainerphonenum": "0911233445",
+      "traineraddress": "sodo",
+      "trainerage": "30",
+      "trainergender": "M",
+      "traineryearofExpriance": "6"
+    },
+    {
+      "id": "03b3",
+      "trainerFname": "naol",
+      "trainerLname": "legese",
+      "traineremail": "naol@gmail.com",
+      "trainerphonenum": "091222222",
+      "traineraddress": "addis abeba",
+      "trainerage": "122",
+      "trainergender": "M",
+      "traineryearofExpriance": "21"
     }
   ]
 }
