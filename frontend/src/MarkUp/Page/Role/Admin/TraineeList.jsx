@@ -49,7 +49,7 @@ function TraineeList() {
                             {filteredTrainees.map((trainee, index) => (
                                 <tr
                                     key={trainee.id}
-                                    className={`transition-all hover:bg-gray-300 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
+                                    className={`transition-all hover:bg-gray-100 hover:w-[110%] ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
                                 >
                                     <td className="px-4 py-3">{index + 1}</td>
                                     <td className="px-4 py-3">{trainee.traineeFname} {trainee.traineeLname}</td>

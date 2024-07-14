@@ -7,6 +7,7 @@ import Dashborad from './MarkUp/Page/Role/Admin/Dashborad'
 import Analysis from './MarkUp/Page/Role/Admin/Analysis'
 import TraineeReg from './MarkUp/Page/Role/Admin/TraineeReg'
 import TraineeList from './MarkUp/Page/Role/Admin/TraineeList'
+import Login from './MarkUp/Page/Common/Login'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,6 +23,7 @@ function App() {
         </Route>
         <Route path='trainerReg' element={<TrainerRegistration />} />
         <Route path='traineeReg' element={<TraineeReg />} />
+        <Route path='login' element={<Login />} />
 
 
       </Routes>

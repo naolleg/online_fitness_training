@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useTrainer } from '../../../../Context/UserContext';
-import { FaRegCheckCircle, FaRegTimesCircle } from 'react-icons/fa';
 
 function TraineeReg() {
     const { trainees, setTrainees } = useTrainer();
-
     const Base_urlTrainee = "http://localhost:8001";
 
     const [traineeFname, setTraineeFname] = useState("");
@@ -48,8 +46,17 @@ function TraineeReg() {
             const data = await res.json();
             console.log(data);
             setTrainees([...trainees, traineeInfo]);
-        } catch {
-            throw new Error("There was an error adding user data...");
+        } catch (error) {
+            console.error("There was an error adding user data:", error);
+        }
+    }
+
+    function calaBMI() {
+        if (traineeWeight && traineeHeight) {
+            const weight = parseFloat(traineeWeight);
+            const height = parseFloat(traineeHeight) / 100; // Convert height to meters
+            const bmi = (weight / (height * height)).toFixed(2);
+            setTraineeBMI(bmi);
         }
     }
 
@@ -58,7 +65,7 @@ function TraineeReg() {
             <div className="bg-gray-100 min-h-screen flex items-center justify-center py-12">
                 <div className="bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-4xl p-8">
                     <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold text-blue-400">Online Trainee Registration Form</h2>
+                        <h2 className="text-3xl font-bold text-cyan-700">Online Trainee Registration Form</h2>
                         <p className="text-gray-700 mt-4">Join our online fitness training and start your fitness journey today! Please fill out the form to register.</p>
                     </div>
                     <form onSubmit={handleRegister}>
@@ -149,7 +156,10 @@ function TraineeReg() {
                                     id="weight"
                                     type="number"
                                     className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                    onChange={(e) => setTraineeWeight(e.target.value)}
+                                    onChange={(e) => {
+                                        setTraineeWeight(e.target.value);
+                                        calaBMI();
+                                    }}
                                     value={traineeWeight}
                                     required
                                 />
@@ -160,7 +170,10 @@ function TraineeReg() {
                                     id="height"
                                     type="number"
                                     className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                    onChange={(e) => setTraineeHeight(e.target.value)}
+                                    onChange={(e) => {
+                                        setTraineeHeight(e.target.value);
+                                        calaBMI();
+                                    }}
                                     value={traineeHeight}
                                     required
                                 />
@@ -169,11 +182,10 @@ function TraineeReg() {
                                 <label htmlFor="bmi" className="block text-sm font-medium text-gray-700">BMI</label>
                                 <input
                                     id="bmi"
-                                    type="number"
-                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                    onChange={(e) => setTraineeBMI(e.target.value)}
+                                    type="text"
+                                    className="mt-1 p-2 border text-black border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                                     value={traineeBMI}
-                                    required
+                                    readOnly
                                 />
                             </div>
                             <div className="mb-4">
@@ -187,18 +199,97 @@ function TraineeReg() {
                                     required
                                 />
                             </div>
-                            <div className="mb-4 col-span-2">
-                                <label htmlFor="medicalInfo" className="block text-sm font-medium text-gray-700">Medical Information</label>
-                                <textarea
-                                    id="medicalInfo"
-                                    rows="3"
-                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                                    placeholder="Enter medical information (if any)"
-                                    onChange={(e) => setMedicalInfo(e.target.value)}
-                                    value={medicalInfo}
-                                ></textarea>
+
+
+                        </div>
+                        <div className="mt-8 mb-3">
+                            <p className="  font-semibold my-3 text-xl">Medical Information</p>
+                            <p className="   mt-1">Do you have any medical conditions or allergies?</p>
+                            <div className="    mt-3 my-8">
+                                <span className='me-3'>
+                                    <input type="radio" value="yes" /> Yes</span>
+                                <span className='me-3'>
+                                    <input type="radio" value="no" /> No
+                                </span>
+
+                            </div>
+
+
+                        </div>
+                        <div className="mb-4 mt-2 col-span-2">
+                            <label htmlFor="medicalInfo" className="block text-sm font-medium text-gray-700">Medical Information</label>
+                            <textarea
+                                id="medicalInfo"
+                                rows="3"
+                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                                placeholder="Enter medical information (if any)"
+                                onChange={(e) => setMedicalInfo(e.target.value)}
+                                value={medicalInfo}
+                            ></textarea>
+                        </div>
+
+                        <div className="mt-8">
+                            <p className="   mt-1">Are you a current cigarette smoker?</p>
+                            <div className="  mt-3 ">
+                                <span className='me-3'>
+                                    <input type="radio" value="yes" /> Yes</span>
+                                <span className='me-3'>
+                                    <input type="radio" value="no" /> No
+                                </span>
                             </div>
                         </div>
+
+                        <div className="">
+                            <p className="   mt-1">Your current diet could be best characterized as:</p>
+                            <div className="   mt-3 ">
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Low-fat</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Low-carb</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>High-protein</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Vegetarian/Vegan</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Other</label>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div className="mt-8">
+                            <p className="   mt-1">What following goals does best fit in with your goals?</p>
+                            <div className="   mt-3 ">
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Improved health</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Improved endurance</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Increased strength</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Increased muscle mass</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Fat loss</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" /><label htmlFor="" className='px-2'>Other</label>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
                         <div className="mt-6">
                             <div className="flex items-center">
                                 <input
@@ -213,7 +304,7 @@ function TraineeReg() {
                             </div>
                         </div>
                         <div className="mt-10 flex justify-center">
-                            <button type="submit" className="bg-blue-400 hover:bg-blue-800 text-white w-1/2 px-4 py-3 rounded-lg text-xl">
+                            <button type="submit" className="bg-cyan-700 hover:bg-cyan-800 text-white w-1/2 px-4 py-3 rounded-lg text-xl">
                                 Register
                             </button>
                         </div>

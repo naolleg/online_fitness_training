@@ -32,17 +32,6 @@
       "trainerage": "30",
       "trainergender": "M",
       "traineryearofExpriance": "6"
-    },
-    {
-      "id": "03b3",
-      "trainerFname": "naol",
-      "trainerLname": "legese",
-      "traineremail": "naol@gmail.com",
-      "trainerphonenum": "091222222",
-      "traineraddress": "addis abeba",
-      "trainerage": "122",
-      "trainergender": "M",
-      "traineryearofExpriance": "21"
     }
   ]
 }
