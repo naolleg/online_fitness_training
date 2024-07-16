@@ -5,8 +5,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import  Status from "@prisma/client";
 import { SECRET } from "../../config/secrete.js";
-import { generatePassword } from "../../util/generateor.js"
-import { sendEmail } from "../../util/emailSender.js";
+import { generatePassword } from "../../utils/generator.js"
+import { sendEmail } from "../../utils/emailSender.js";
 
 const userController = {
   
@@ -34,7 +34,7 @@ const userController = {
         message: "password is incorrect",
       });
     }
-    if (user.status != Status.) {
+    if (user.status !="Active") {
       return res.status(404).json({
         success: false,
         message: "user is not active",
@@ -167,8 +167,8 @@ const userController = {
         id: +id,
       },
       data: {
-        fname: data.firstName,
-        lname: data.lastName,
+        fname: data.fname,
+        lname: data.lname,
         gender:data.gender,
         imageurl:data.imageurl,
         

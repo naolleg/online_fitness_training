@@ -1,4 +1,6 @@
 import React from 'react';
+
+
 import {
     Card,
     CardBody,
@@ -6,7 +8,7 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import Chart from "react-apexcharts";
-import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
+// import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 
 const pieConfig = {
     type: "pie",
@@ -132,7 +134,7 @@ function Analysis() {
                         <CardHeader className='bg-cyan-700 text-white' contentPosition="top">
                             <div className="flex items-center">
                                 <div className="w-10 h-10 bg-cyan-700 text-white rounded-full flex justify-center items-center">
-                                    <Square3Stack3DIcon className="h-6 w-6" />
+                                    {/* <Square3Stack3DIcon className="h-6 w-6" /> */}
                                 </div>
                                 <Typography variant="h6" color="bg-cyan-700">
                                     Active Trainers
@@ -170,7 +172,7 @@ function Analysis() {
                         <CardHeader className='bg-cyan-900 text-white' contentPosition="top">
                             <div className="flex items-center">
                                 <div className="w-10 h-10  text-white rounded-full flex justify-center items-center">
-                                    <Square3Stack3DIcon className="h-6 w-6" />
+                                    {/* <Square3Stack3DIcon className="h-6 w-6" /> */}
                                 </div>
                                 <Typography variant="h6" color="blue-gray">
                                     Total Users
@@ -190,7 +192,7 @@ function Analysis() {
                     <CardHeader className='bg-cyan-700 text-white' contentPosition="top">
                         <div className="flex items-center">
                             <div className="w-10 h-10  text-white rounded-full flex justify-center items-center">
-                                <Square3Stack3DIcon className="h-6 w-6" />
+                                {/* <Square3Stack3DIcon className="h-6 w-6" /> */}
                             </div>
                             <Typography variant="h6" color="blue-gray">
                                 Line Chart
@@ -206,7 +208,7 @@ function Analysis() {
                     <CardHeader className='bg-cyan-700 text-white' contentPosition="top">
                         <div className="flex items-center">
                             <div className="w-10 h-10  text-white rounded-full flex justify-center items-center">
-                                <Square3Stack3DIcon className="h-6 w-6" />
+                                {/* <Square3Stack3DIcon className="h-6 w-6" /> */}
                             </div>
                             <Typography variant="h6" color="blue-gray">
                                 Pie Chart

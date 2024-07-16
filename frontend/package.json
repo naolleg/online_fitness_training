@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server:trainers": "json-server --watch ./data/trainer.json --port 8000",
-    "server:trainee": "json-server --watch ./data/trainee.json --port 8001"
+    "server:trainee": "json-server --watch ./data/trainee.json --port 8002"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -19,6 +19,7 @@
     "@material-tailwind/react": "^2.1.9",
     "apexcharts": "^3.50.0",
     "chart.js": "^4.4.3",
+    "json-server": "^1.0.0-beta.1",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
     "react-chartjs-2": "^5.2.0",

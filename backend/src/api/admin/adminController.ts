@@ -3,12 +3,12 @@ import jwt from 'jsonwebtoken'
 import { NextFunction, Request, Response } from 'express'
 import {prisma} from '../../config/prisma.js'
 import { SECRET } from '../../config/secrete.js'
-import { BadRequest } from '../../exceptions/badRequest.js'
+import { BadRequest } from '../../exception/badRequest.js'
 import { ErrorCode } from '../../exception/root.js'
 import { STATUS_CODES } from 'http'
-import { UnprocessableEntity } from '../../exceptions/validation.js'
-import authSchema from './authSchema.js'
-import { generateOTP } from '../../util/generateor.js'
+import { UnprocessableEntity } from '../../exception/validation.js'
+import authSchema from './adminSchema.js'
+import { generateOTP } from '../../utils/generator.js'
 
 const authController = {
    //register
@@ -23,7 +23,7 @@ const authController = {
        
       }});
       if(isAdminExist){
-       return next(new UnprocessableEntity('Email or Phone has been registered before',403,ErrorCode.USER_ALREADY_EXIST,null));
+       return next(new UnprocessableEntity('Email  has been registered before',403,ErrorCode.USER_ALREADY_EXIST,null));
       }
       // create the admin
       const otp= generateOTP();
@@ -31,24 +31,17 @@ const authController = {
       const newAdmin = await prisma.admin.create({
          data: {
             email: req.body.email,
-            phone: req.body.phone,
+            fname: req.body.fname,
+            lname: req.body.lname,
             password: password,
-            otp: otp,
-            profile: {
-               create: {
-                  firstName: req.body.firstName,
-                  middleName: req.body.middleName,
-                  lastName: req.body.lastName,
-                  imageUrl:req.body.imageUrl
+            username:req.body.username,
+          
                }
-            }
+            })
+            res.status(201).json(newAdmin);
          },
-         include: {
-            profile: true
-         }
-      });
-      res.status(201).json(newAdmin);
-   },
+      
+      
    //login admin
    loginAdmin: async (req: Request, res: Response, next: NextFunction) => {
       authSchema.login.parse(req.body);
@@ -60,12 +53,11 @@ const authController = {
       if (!isMatch) {
          return next(new UnprocessableEntity('Incorrect password', 403, ErrorCode.INCORRECT_PASSWORD, null));
       }
-      const adminProfiles = await prisma.adminProfiles.findFirst({ where: { adminId: admin.id } });
+      const adminProfiles = await prisma.admin.findFirst({ where: { id: admin.id } });
       // Create token
       const payload = {
          id: admin.id,
-         role: admin.role,
-         firstName: adminProfiles?.firstName
+         fname: adminProfiles?.fname
       };
       const token = jwt.sign(payload, SECRET!);
       return res.status(200).json({
@@ -79,7 +71,6 @@ const authController = {
          where:{id:req.admin!.id},
          include: {
             _count: true,
-            profile:true,
          }
       });
       res.status(200).json(admin);
