@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Sidebar from './Sidebar'
+import Sidebar from './SidebarNav'
 import Right from './Right'
 
 function Dashborad() {
@@ -28,8 +28,8 @@ function Dashborad() {
     return (
         <>
             <div className='flex'>
-                <Sidebar onhandledashboard={handleDashboardClick} onhandletrainer={handleTrainer} onhandletrainee={handleTrainee} />
-                <Right showAnalysis={showAnalysis} showtrainers={showtrainers} showTrainee={showTrainee} />
+                <Sidebar showAnalysis={showAnalysis} onhandledashboard={handleDashboardClick} showtrainers={showtrainers} onhandletrainer={handleTrainer} showTrainee={showTrainee} onhandletrainee={handleTrainee} />
+                {/* <Right /> */}
             </div>
 
         </>

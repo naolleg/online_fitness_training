@@ -1,223 +1,195 @@
 import React from 'react';
-import {
-    Card,
-    CardBody,
-    CardHeader,
-    Typography,
-} from "@material-tailwind/react";
-import Chart from "react-apexcharts";
-import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LabelList } from 'recharts';
+import { Card } from "flowbite-react";
+import MonthlyFitnessGoals from './MonthlyFitnessGoals';
+import cardio from '../../../../assets/cardio.png'
 
-const pieConfig = {
-    type: "pie",
-    width: 280,
-    height: 280,
-    series: [44, 55, 13, 43, 22],
-    options: {
-        chart: {
-            toolbar: {
-                show: false,
-            },
-        },
-        title: {
-            show: "",
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        colors: ["#ef0617", "#ff8f00", "#00897b", "#1e8825", "#d81660"],
-        legend: {
-            show: false,
-        },
+import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
+
+
+const data = [
+    {
+        name: 'Trainer',
+        value: 40,
     },
+    {
+        name: 'Trainee',
+        value: 60,
+    },
+    {
+        name: 'Total Number',
+        value: 100,
+    },
+];
+
+const datachart = [
+    { value: 5, label: 'A' },
+    { value: 10, label: 'B' },
+    { value: 15, label: 'C' },
+    { value: 20, label: 'D' },
+];
+
+const size = {
+    width: 400,
+    height: 350,
 };
 
-const chartConfig = {
-    type: "line",
-    height: 280,
-    series: [
-        {
-            name: "Sales",
-            data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-        },
-    ],
-    options: {
-        chart: {
-            toolbar: {
-                show: false,
-            },
-        },
-        title: {
-            show: "",
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        colors: ["#020617"],
-        stroke: {
-            lineCap: "round",
-            curve: "smooth",
-        },
-        markers: {
-            size: 0,
-        },
-        xaxis: {
-            axisTicks: {
-                show: false,
-            },
-            axisBorder: {
-                show: false,
-            },
-            labels: {
-                style: {
-                    colors: "#616161",
-                    fontSize: "12px",
-                    fontFamily: "inherit",
-                    fontWeight: 400,
-                },
-            },
-            categories: [
-                "Apr",
-                "May",
-                "Jun",
-                "Jul",
-                "Aug",
-                "Sep",
-                "Oct",
-                "Nov",
-                "Dec",
-            ],
-        },
-        yaxis: {
-            labels: {
-                style: {
-                    colors: "#616161",
-                    fontSize: "12px",
-                    fontFamily: "inherit",
-                    fontWeight: 400,
-                },
-            },
-        },
-        grid: {
-            show: true,
-            borderColor: "#dddddd",
-            strokeDashArray: 5,
-            xaxis: {
-                lines: {
-                    show: true,
-                },
-            },
-            padding: {
-                top: 5,
-                right: 20,
-            },
-        },
-        fill: {
-            opacity: 0.8,
-        },
-        tooltip: {
-            theme: "dark",
-        },
-    },
-};
 
 function Analysis() {
     return (
-        <div className="py-10 px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Statistics Cards */}
-                <div className="col-span-1 md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Active Trainers */}
-                    <Card>
-                        <CardHeader className='bg-cyan-700 text-white' contentPosition="top">
-                            <div className="flex items-center">
-                                <div className="w-10 h-10 bg-cyan-700 text-white rounded-full flex justify-center items-center">
-                                    <Square3Stack3DIcon className="h-6 w-6" />
-                                </div>
-                                <Typography variant="h6" color="bg-cyan-700">
-                                    Active Trainers
-                                </Typography>
-                            </div>
-                        </CardHeader>
-                        <CardBody>
-                            <Typography variant="h2" color="blue">
-                                40
-                            </Typography>
-                        </CardBody>
-                    </Card>
+        <div className="w-full ">
 
-                    {/* Active Trainees */}
-                    <Card>
-                        <CardHeader className='bg-cyan-800 text-white' contentPosition="top">
-                            <div className="flex items-center">
-                                <div className="w-10 h-10 text-white rounded-full flex justify-center items-center">
-                                    <Square3Stack3DIcon className="h-6 w-6" />
-                                </div>
-                                <Typography variant="h6" color="blue-gray">
-                                    Active Trainees
-                                </Typography>
-                            </div>
-                        </CardHeader>
-                        <CardBody>
-                            <Typography variant="h2" color="green">
-                                80
-                            </Typography>
-                        </CardBody>
-                    </Card>
 
-                    {/* Total Users */}
-                    <Card>
-                        <CardHeader className='bg-cyan-900 text-white' contentPosition="top">
-                            <div className="flex items-center">
-                                <div className="w-10 h-10  text-white rounded-full flex justify-center items-center">
-                                    <Square3Stack3DIcon className="h-6 w-6" />
-                                </div>
-                                <Typography variant="h6" color="blue-gray">
-                                    Total Users
-                                </Typography>
+            {/* card section */}
+
+            <div className="flex flex-wrap justify-between items-start px-4 mb-8">
+                <div className=" md:w-[100%] mb-4 flex flex-wrap justify-between">
+                    <div className="w-full md:w-[30%] mb-4">
+                        <Card href="#" className="max-w-xs shadow-md rounded-lg overflow-hidden bg-gray-100">
+                            <div className="p-2">
+                                <h5 className="text-xl text-center font-semibold mb-2">Total Trainer</h5>
+                                <p className="text-gray-700 text-center text-lg">40</p>
                             </div>
-                        </CardHeader>
-                        <CardBody>
-                            <Typography variant="h2" color="purple">
-                                120
-                            </Typography>
-                        </CardBody>
-                    </Card>
+                        </Card>
+                    </div>
+                    <div className="w-full md:w-[30%] mb-4">
+                        <Card href="#" className="max-w-xs shadow-md rounded-lg overflow-hidden bg-gray-100">
+                            <div className="p-2">
+                                <h5 className="text-xl text-center font-semibold mb-2">Total Trainee</h5>
+                                <p className="text-gray-700 text-center text-lg">60</p>
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="w-full md:w-[30%] mb-4">
+                        <Card href="#" className="max-w-xs shadow-md rounded-lg overflow-hidden bg-gray-100">
+                            <div className="p-2">
+                                <h5 className="text-xl text-center font-semibold mb-2">Total Users</h5>
+                                <p className="text-gray-700 text-center text-lg">100</p>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+
+
+            {/* monthly analysis */}
+
+            <div className="w-full  flex flex-wrap justify-between px-4 gap-3">
+                {/* barchar */}
+                <div className="w-full md:w-[68%] mb-8">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-800">Monthly Analysis</h2>
+                    <div className="bg-white p-6 rounded-lg shadow-md">
+                        <ResponsiveContainer width="100%" height={300}>
+                            <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip />
+                                <Legend />
+                                <Bar dataKey="value" fill="#3cac6c" barSize={40} radius={[8, 8, 0, 0]}>
+                                    <LabelList dataKey="value" position="top" />
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+                {/* summery */}
+                <div className="w-full md:w-[30%] mb-8">
+                    <MonthlyFitnessGoals />
+                </div>
+            </div>
+
+
+            {/* popular activty */}
+
+            <div className='flex w-full gap-5'>
+                <div className='w-[23%]'>
+                    <p className='text-lg font-semibold mb-2'>Popular fitness activities</p>
+                    {/* activities */}
+                    <div className="w-full  mb-4">
+                        <Card href="#" className=" shadow-md rounded-lg overflow-hidden bg-gray-100">
+                            <div className="">
+                                <h5 className="text-xl text-center font-semibold mb-2">Cardio strenght </h5>
+                                <div className='flex justify-between'>
+                                    <div>
+                                        <p className="text-gray-700 text-lg">30 Trainee</p>
+                                        <p className="text-gray-700 text-lg">14 Trainer</p>
+                                    </div>
+                                    <div>
+                                        <img src={cardio} alt="" className='w-[40px]' />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="w-full  mb-4">
+                        <Card href="#" className=" shadow-md rounded-lg overflow-hidden bg-gray-100">
+                            <div className="">
+                                <h5 className="text-xl text-center font-semibold mb-2">Cardio strenght </h5>
+                                <div className='flex justify-between'>
+                                    <div>
+                                        <p className="text-gray-700 text-lg">30 Trainee</p>
+                                        <p className="text-gray-700 text-lg">14 Trainer</p>
+                                    </div>
+                                    <div>
+                                        <img src={cardio} alt="" className='w-[40px]' />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </Card>
+                    </div>
+                    <div className="w-full  mb-4">
+                        <Card href="#" className=" shadow-md rounded-lg overflow-hidden bg-gray-100">
+                            <div className="">
+                                <h5 className="text-xl text-center font-semibold mb-2">Cardio strenght </h5>
+                                <div className='flex justify-between'>
+                                    <div>
+                                        <p className="text-gray-700 text-lg">30 Trainee</p>
+                                        <p className="text-gray-700 text-lg">14 Trainer</p>
+                                    </div>
+                                    <div>
+                                        <img src={cardio} alt="" className='w-[40px]' />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+                {/* pieChar */}
+                <div>
+                    <PieChart
+                        series={[
+                            {
+                                arcLabel: (item) => `${item.label} (${item.value})`,
+                                arcLabelMinAngle: 45,
+                                data,
+                            },
+                        ]}
+                        sx={{
+                            [`& .${pieArcLabelClasses.root}`]: {
+                                fill: 'white',
+                                fontWeight: 'bold',
+                            },
+                        }}
+                        {...size}
+                    />
                 </div>
 
-                {/* Charts */}
-                <Card className="col-span-1 md:col-span-2">
-                    <CardHeader className='bg-cyan-700 text-white' contentPosition="top">
-                        <div className="flex items-center">
-                            <div className="w-10 h-10  text-white rounded-full flex justify-center items-center">
-                                <Square3Stack3DIcon className="h-6 w-6" />
-                            </div>
-                            <Typography variant="h6" color="blue-gray">
-                                Line Chart
-                            </Typography>
-                        </div>
-                    </CardHeader>
-                    <CardBody>
-                        <Chart {...chartConfig} />
-                    </CardBody>
-                </Card>
+                {/* popular trainers */}
 
-                <Card className="col-span-1">
-                    <CardHeader className='bg-cyan-700 text-white' contentPosition="top">
-                        <div className="flex items-center">
-                            <div className="w-10 h-10  text-white rounded-full flex justify-center items-center">
-                                <Square3Stack3DIcon className="h-6 w-6" />
-                            </div>
-                            <Typography variant="h6" color="blue-gray">
-                                Pie Chart
-                            </Typography>
-                        </div>
-                    </CardHeader>
-                    <CardBody className="grid place-items-center">
-                        <Chart {...pieConfig} />
-                    </CardBody>
-                </Card>
+                <div>
+                    <p>Popular Trainers</p>
+                </div>
             </div>
+
+
+
         </div>
     );
 }
