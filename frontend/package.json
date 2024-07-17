@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server:trainers": "json-server --watch ./data/trainer.json --port 8000",
-    "server:trainee": "json-server --watch ./data/trainee.json --port 8001"
+    "server:trainee": "json-server --watch ./data/trainee.json --port 8002"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

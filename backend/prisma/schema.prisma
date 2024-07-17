@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 model Admin {
@@ -32,7 +32,7 @@ model User {
   imageurl String?
   role     Role     @default(Trainee)
   gender   Gender?
-  age      Int?
+  dateOfBirth     DateTime?
   status   Status?
   admin    Admin?   @relation(fields: [id], references: [id])
   trainer  Trainer?
@@ -52,7 +52,6 @@ enum Role {
 enum Gender {
   Male
   Female
-  Other
 }
 
 enum Status {
@@ -65,7 +64,6 @@ model Trainer {
   user         User     @relation(fields: [id], references: [id])
   certification String
   specialization String
-  profile_photo String
   introduction_video String
   schedules Schedule[]
   progress Progress[]
