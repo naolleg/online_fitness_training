@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import loginBg from '../../../assets/loginBg.jpeg';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../Context/FakeAuthContext';
+
 function Login(props) {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -11,14 +14,35 @@ function Login(props) {
             document.documentElement.classList.add('dark');
         }
     };
+
+    const navigate = useNavigate();
+    const { login, isAuthenticated, role } = useAuth();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleLogin(e) {
+        e.preventDefault();
+        if (email && password) {
+            login(email, password);
+        }
+    }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            if (role === 'admin') {
+                navigate('/admin', { replace: true });
+            } else if (role === 'trainer') {
+                navigate('/trainer', { replace: true });
+            } else if (role === 'trainee') {
+                navigate('/', { replace: true });
+            }
+        }
+    }, [isAuthenticated, role, navigate]);
+
     return (
         <>
-            <div
-                className="bg-red-200 w-full h-screen bg-cover bg-around"
-                style={{
-                    backgroundImage: `url(${loginBg})`,
-                }}>
-
+            <div className="bg-red-200 w-full h-screen bg-cover bg-around" style={{ backgroundImage: `url(${loginBg})` }}>
                 <nav className='text-white px-10 text-lg'>
                     <ul className='flex justify-between px-10'>
                         <div className='pt-4'>
@@ -39,7 +63,6 @@ function Login(props) {
                                     <label className="inline-flex items-center cursor-pointer">
                                         <input
                                             type="checkbox"
-                                            value=""
                                             className="sr-only peer"
                                             checked={isDarkMode}
                                             onChange={toggleDarkMode}
@@ -58,7 +81,6 @@ function Login(props) {
                                         </span>
                                     </label>
                                 </li>
-
                             </div>
                         </div>
                     </ul>
@@ -69,20 +91,26 @@ function Login(props) {
                         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
                             <img src="../../../assets/" alt="Avatar" className="w-20 h-20 rounded-full border-2 border-gray-300" />
                         </div>
-                        <form className="space-y-4 mt-4" action="#">
+                        <form className="space-y-4 mt-4" onSubmit={handleLogin}>
                             <h5 className="text-xl font-medium text-gray-800">Sign in</h5>
                             <div>
                                 <label className="block mb-1 text-sm font-medium text-gray-800">Your email</label>
-                                <input type="email" name="email" id="email" className="border-b-2 text-gray-800 text-sm rounded-lg block w-full p-2.5" placeholder="name@gmail.com" required />
+                                <input
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    type="email" name="email" id="email" className="border-b-2 text-gray-800 text-sm rounded-lg block w-full p-2.5" placeholder="name@gmail.com" required />
                             </div>
                             <div>
                                 <label className="block mb-1 text-sm font-medium text-gray-800">Your password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                                <input
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                             </div>
                             <div className="flex items-start">
                                 <div className="flex items-start">
                                     <div className="flex items-center h-5">
-                                        <input id="remember" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" required />
+                                        <input id="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" />
                                     </div>
                                     <label className="ml-2 text-sm font-medium text-gray-800">Remember me</label>
                                 </div>
@@ -95,7 +123,6 @@ function Login(props) {
                         </form>
                     </div>
                 </div>
-
             </div>
         </>
     );

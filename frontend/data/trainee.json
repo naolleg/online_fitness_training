@@ -44,7 +44,36 @@
       "traineeHeight": "40",
       "traineeBMI": "21",
       "traineeGoalWeight": "20"
+    },
+    {
+      "id": "ad6e",
+      "traineeFname": "mahi",
+      "traineeLname": "dametw",
+      "traineeEmail": "mihirtuu@gmail.com",
+      "traineePhonenum": "965199682",
+      "traineeAddress": "Jimma",
+      "traineeAge": "34",
+      "traineegender": "F",
+      "medicalInfo": "",
+      "traineeWeight": "77",
+      "traineeHeight": "1.62",
+      "traineeBMI": "",
+      "traineeGoalWeight": "58"
+    },
+    {
+      "id": "4d86",
+      "traineeFname": "zerubabel",
+      "traineeLname": "dametw",
+      "traineeEmail": "Sikaryoseph@gmail.com",
+      "traineePhonenum": "965199682",
+      "traineeAddress": "Jimma",
+      "traineeAge": "29",
+      "traineegender": "M",
+      "medicalInfo": "",
+      "traineeWeight": "90",
+      "traineeHeight": "1.62",
+      "traineeBMI": "",
+      "traineeGoalWeight": "58"
     }
-    
   ]
 }

@@ -22,14 +22,14 @@ function TrainerList() {
     });
 
     return (
-        <div className="bg-gray-100 text-gray-800 rounded-lg shadow-md overflow-hidden my-8 mx-4">
-            <div className="flex justify-between items-center py-4 px-6">
+        <div className="bg-gray-100 text-gray-800 rounded-lg shadow-md overflow-hidden mb-3 mx-4">
+            <div className="flex justify-between items-center pt-1 pb-4 px-6">
                 <h3 className="text-2xl">Trainers List</h3>
                 <button className="bg-blue-400 hover:bg-blue-500 text-white font-medium py-2 px-4 rounded">
                     <Link to="/trainerReg">Add</Link>
                 </button>
             </div>
-            <div className="p-6">
+            <div className="p-3">
                 <div className="relative mb-4">
                     <input
                         type="text"
