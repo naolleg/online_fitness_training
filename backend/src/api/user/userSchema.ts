@@ -1,15 +1,18 @@
 import { z } from "zod";
 import { Gender} from '@prisma/client';
+import { height } from "pdfkit/js/page";
 const userSchema ={
    
 
   register: z.object({
+    dateOfBirth: z.string().min(1),
     password: z.string().min(6),
     email: z.string().email(),
     fname: z.string().min(1),
     lname: z.string().min(1),
     gender: z.nativeEnum(Gender),
     imageurl:z.string().min(1),
+   
   }),
   login: z.object({
     password: z.string().min(6),
@@ -25,7 +28,10 @@ const userSchema ={
     lname: z.string().min(1),
     gender: z.nativeEnum(Gender),
     imageurl:z.string().min(1),
+    dateOfBirth: z.string().min(1),
   
+  }),
+  registertrainee:z.object({
   }),
 };
 
