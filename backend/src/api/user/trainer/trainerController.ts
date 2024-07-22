@@ -6,8 +6,8 @@ import bcrypt from "bcrypt";
 import { Role, Status } from "@prisma/client";
 
 
-const traineeController={
-    register: async(req: Request,res: Response,next: NextFunction)=>{
+const trainerController={
+    requestRegistration: async(req: Request,res: Response,next: NextFunction)=>{
         console.log("wfedc");
         
         const data = userSchema.register.parse(req.body);
@@ -102,4 +102,4 @@ const traineeController={
       },
     }
 
-export default traineeController;
+export default trainerController;
