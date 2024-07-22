@@ -89,7 +89,7 @@ io.on("connect", async (socket: Socket) => {
       }
 
       // Assign user object to socket
-       Socket.user=user;
+       socket.user=user;
 
       // Join a room with user ID
       socket.join(user.id.toString());
@@ -106,7 +106,7 @@ io.on("connect", async (socket: Socket) => {
       socket.on(ChatEventEnum.DISCONNECT_EVENT, () => {
         console.log("user has disconnected 🚫. userId: " + socket.use);
         if (socket.user?.id) {
-          socket.leave(socket..id.toString());
+          socket.leave(socket.user.id.toString());
         }
       });
     } catch (error: any) {
