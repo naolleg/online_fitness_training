@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { UnprocessableEntity } from "../exceptions/validation.js";
-import { ErrorCode } from "../exceptions/root.js";
+import { UnprocessableEntity } from "../exception/validation.js";
+import { ErrorCode } from "../exception/root.js";
 import { SECRET } from "../config/secrete.js";
 import { prisma } from "../config/prisma.js";
-import { Unauthorized } from "../exceptions/unauthorized.js";
-import { NotFound } from "../exceptions/notFound.js";
+import { Unauthorized } from "../exception/unauthorized.js";
+import { NotFound } from "../exception/notfound.js";
 
 const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.headers.authorization;

@@ -1,10 +1,10 @@
 import { Request } from "express";
 import jwt from "jsonwebtoken";
 import { Server, Socket } from "socket.io";
-import {io} from '../'
-import { UnprocessableEntity } from "../exceptions/validation.js";
-import { ErrorCode } from "../exceptions/root.js";
-import { DATABASE_URL, SECRET } from "../config/secrets.js";
+import {io} from '../../app'
+import { UnprocessableEntity } from "../exception/validation.js";
+import { ErrorCode } from "../exception/root.js";
+import { DATABASE_URL, SECRET } from "../config/secrete";
 import { prisma } from "../config/prisma.js";
 
 export interface OnlineUser {
