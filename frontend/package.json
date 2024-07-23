@@ -9,7 +9,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server:trainers": "json-server --watch ./data/trainer.json --port 8000",
-    "server:trainee": "json-server --watch ./data/trainee.json --port 8001"
+    "server:trainee": "json-server --watch ./data/trainee.json --port 8002"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -26,6 +26,7 @@
     "apexcharts": "^3.50.0",
     "chart.js": "^4.4.3",
     "flowbite-react": "^0.10.1",
+    "json-server": "^1.0.0-beta.1",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
     "react-chartjs-2": "^5.2.0",
@@ -35,8 +36,7 @@
     "react-slick": "^0.30.2",
     "recharts": "^2.12.7",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^6.1.11",
-    "swiper": "^11.1.5"
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
