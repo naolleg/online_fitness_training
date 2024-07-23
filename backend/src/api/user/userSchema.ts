@@ -12,6 +12,7 @@ const userSchema ={
     lname: z.string().min(1),
     gender: z.nativeEnum(Gender),
     imageurl:z.string().min(1),
+    phonenumber:z.string().min(10)
    
   }),
   login: z.object({

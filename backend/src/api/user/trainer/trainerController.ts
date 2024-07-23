@@ -4,6 +4,8 @@ import { prisma } from "../../../config/prisma.js";
 import { url } from "inspector";
 import bcrypt from "bcrypt";
 import { Role, Status } from "@prisma/client";
+import { now } from "moment";
+import { date } from "zod";
 
 
 const trainerController={
@@ -31,18 +33,31 @@ const trainerController={
       fname: data.fname,
       lname: data.lname,
       gender:data.gender,
-      phone
-      createdAt
+      phoneNumber:data.phonenumber,
+      createdAt: new Date(),
       password: hashedPassword,
       status: Status.Active,
+      addresses:{
+        create:{
+          city:req.body.city,
+          region:req.body.region
+          
+        }
+      },
       trainer:{
         create:{
-           category
            certification:req.body.certification,
-           introduction_video:req.body.introduction_video
-           experience
-      }
+           introduction_video:req.body.introduction_video,
+           experience:req.body.experience,
+           categories:{
+            create:{
+              name:req.body.name
+            }
+           }
+      },
+      
     },
+    
   }}
 );
 
@@ -75,12 +90,19 @@ const trainerController={
                 fname: data.fname,
                 lname: data.lname,
                 trainer:{
-                    create:{
-                       specialization:req.body.specialization,
-                       certification:req.body.certification,
-                       introduction_video:req.body.introduction_video
-                  }
+                  create:{
+                     certification:req.body.certification,
+                     introduction_video:req.body.introduction_video,
+                     experience:req.body.experience,
+                     categories:{
+                      create:{
+                        name:req.body.name
+                      }
+                     }
                 },
+                
+              },
+              
             }
         });
         return res.status(200).json({
