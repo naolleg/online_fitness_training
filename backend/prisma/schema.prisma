@@ -89,6 +89,7 @@ model TraineeStatus {
   traineeid   Int
   height     Float
   weight     Float
+  BMI        Float
   allergies  String
   medical_conditions String
   medications String

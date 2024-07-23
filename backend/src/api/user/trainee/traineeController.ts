@@ -22,17 +22,26 @@ const traineeController={
         }
         const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-
-  const newUser = await prisma.user.create({
+         const bmi =req.body.weight/(req.body.height*req.body.height);
+  const newTrainee = await prisma.user.create({
     data: {
-      role:"Trainee",
+      role:"Trainer",
       email: data.email,
       dateOfBirth:data.dateOfBirth,
       fname: data.fname,
       lname: data.lname,
       gender:data.gender,
+      phoneNumber:data.phonenumber,
+      createdAt: new Date(),
       password: hashedPassword,
       status: Status.Active,
+      addresses:{
+        create:{
+          city:req.body.city,
+          region:req.body.region
+          
+        }
+      },
       trainee:{
         create:{
             trainee_status:{
@@ -41,7 +50,8 @@ const traineeController={
                     weight:req.body.weight,
                     allergies:req.body.allergies,
                     medical_conditions:req.body.medical_conditions,
-                    medications:req.body.medications
+                    medications:req.body.medications,
+                    BMI:bmi
         }
         }
       }
@@ -52,7 +62,7 @@ const traineeController={
   return res.status(200).json({
     success: true,
     message: "a trainee User created successfully",
-    data: newUser,
+    data: newTrainee,
   });
 },
     update: async(req: Request,res: Response,next: NextFunction)=>{
@@ -63,12 +73,14 @@ const traineeController={
                 id:+id,
             }
         });
+
         if(!isuserExist){
             return res.status(404).json({
                 success: false,
                 message: "user not found",
             });
         }
+        const bmi =req.body.weight/(req.body.height*req.body.height);
         const updatedTrainee = await prisma.user.update({
             where:{
                 id: +id,
@@ -81,6 +93,7 @@ const traineeController={
                   create:{
                       trainee_status:{
                           create:{
+                            BMI:bmi,
                             height:req.body.height,
                             weight:req.body.weight,
                             allergies:req.body.allergies,
