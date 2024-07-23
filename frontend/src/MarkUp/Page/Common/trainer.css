@@ -1,0 +1,86 @@
+.trainer-container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+.trainerimg{
+    width: 300px;
+    height: 300px;
+}
+
+  .swiper-container {
+    padding: 40px 0;
+  }
+  
+  .trainer-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .trainer-card {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .trainer-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .trainer-card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .trainer-card .MuiCardContent-root {
+    text-align: center;
+  }
+  
+  .trainer-card .MuiTypography-h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .trainer-card .MuiTypography-body2 {
+    font-size: 1rem;
+    color: #777;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.7s;
+  }
+  
+  .swiper-button-next {
+    right: 10px;
+  }
+  
+  .swiper-button-prev {
+    left: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .swiper-container {
+      padding: 20px 0;
+    }
+  
+    .trainer-card {
+      max-width: 100%;
+    }
+  
+   
+  }
+  

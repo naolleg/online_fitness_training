@@ -2,18 +2,10 @@ import React, { useEffect, useState } from 'react';
 import loginBg from '../../../assets/loginBg.jpeg';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../Context/FakeAuthContext';
+import Nav from './Nav';
 
-function Login(props) {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+function Login() {
 
-    const toggleDarkMode = () => {
-        setIsDarkMode(!isDarkMode);
-        if (isDarkMode) {
-            document.documentElement.classList.remove('dark');
-        } else {
-            document.documentElement.classList.add('dark');
-        }
-    };
 
     const navigate = useNavigate();
     const { login, isAuthenticated, role } = useAuth();
@@ -43,48 +35,7 @@ function Login(props) {
     return (
         <>
             <div className="bg-red-200 w-full h-screen bg-cover bg-around" style={{ backgroundImage: `url(${loginBg})` }}>
-                <nav className='text-white px-10 text-lg'>
-                    <ul className='flex justify-between px-10'>
-                        <div className='pt-4'>
-                            <li className='text-xl font-bold'>Logo</li>
-                        </div>
-                        <div className='flex justify-between gap-10 pt-4'>
-                            <div className='flex gap-6'>
-                                <li className='hover:text-yellow-300 transition duration-300 ease-in-out'>Home</li>
-                                <li className='hover:text-yellow-300 transition duration-300 ease-in-out'>Programs</li>
-                                <li className='hover:text-yellow-300 transition duration-300 ease-in-out'>Pricing</li>
-                                <li className='hover:text-yellow-300 transition duration-300 ease-in-out'>Trainers</li>
-                            </div>
-                            <div className='flex gap-4'>
-                                <li className='bg-red-700 hover:bg-red-800 px-3 py-1 rounded-lg transition duration-300 ease-in-out'>
-                                    <button>Login</button>
-                                </li>
-                                <li className='px-2 mt-2 rounded-lg transition duration-300 ease-in-out'>
-                                    <label className="inline-flex items-center cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            className="sr-only peer"
-                                            checked={isDarkMode}
-                                            onChange={toggleDarkMode}
-                                        />
-                                        <div className={`relative w-11 h-6 ${isDarkMode ? 'bg-gray-700 dark:bg-gray-200' : 'bg-gray-200'} rounded-full   dark:peer-focus:ring-black peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-black`} />
-                                        <span className={`flex items-center justify-center ms-3 text-sm font-medium ${isDarkMode ? 'text-gray-300 dark:text-gray-900' : 'text-gray-900 dark:text-gray-300'}`}>
-                                            {isDarkMode ? (
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 256 256" className="fill-white">
-                                                    <path fill="white" d="M230.72 145.06a4 4 0 0 0-4-1A92.08 92.08 0 0 1 111.94 29.27a4 4 0 0 0-5-5a100.78 100.78 0 0 0-50.86 35.61a100 100 0 0 0 140 140a100.78 100.78 0 0 0 35.59-50.87a4 4 0 0 0-.95-3.95m-39.42 48.47A92 92 0 0 1 62.47 64.7a93 93 0 0 1 39.88-30.35a100.09 100.09 0 0 0 119.3 119.3a93 93 0 0 1-30.35 39.88"></path>
-                                                </svg>
-                                            ) : (
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 15 15" className="stroke-white">
-                                                    <path fill="none" stroke="white" strokeLinecap="square" d="M7.5 1.5v-1m0 13.99v-.998m6-5.997h1m-13 0h-1m2-4.996l-1-1m12 0l-1 1m-10 9.993l-1 1m12 0l-1-1m-2-4.997a2.999 2.999 0 0 1-3 2.998a2.999 2.999 0 1 1 3-2.998Z"></path>
-                                                </svg>
-                                            )}
-                                        </span>
-                                    </label>
-                                </li>
-                            </div>
-                        </div>
-                    </ul>
-                </nav>
+                <Nav />
 
                 <div className='flex justify-center mt-20'>
                     <div className="relative w-full max-w-sm p-4 bg-white bg-opacity-45 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
