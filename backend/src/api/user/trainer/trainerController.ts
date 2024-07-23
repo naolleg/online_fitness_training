@@ -31,13 +31,17 @@ const trainerController={
       fname: data.fname,
       lname: data.lname,
       gender:data.gender,
+      phone
+      createdAt
       password: hashedPassword,
+      CRE
       status: Status.Active,
       trainer:{
         create:{
-           specialization:req.body.specialization,
+           category
            certification:req.body.certification,
            introduction_video:req.body.introduction_video
+           experience
       }
     },
   }}

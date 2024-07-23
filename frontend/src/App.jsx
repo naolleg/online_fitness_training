@@ -42,9 +42,9 @@ function App() {
       <Route
         path='trainerReg'
         element={
-          <ProtectRouth>
+         // <ProtectRouth>
             <TrainerRegistration />
-          </ProtectRouth>
+         // </ProtectRouth>
         }
       />
 
