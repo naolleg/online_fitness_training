@@ -70,6 +70,7 @@ model Trainer {
   schedules Schedule[]
   progress Progress[]
   training Training[]
+  categories  categories[]
   
 }
 
@@ -92,6 +93,12 @@ model TraineeStatus {
   medical_conditions String
   medications String
    trainee    Trainee  @relation(fields: [traineeid], references: [id])
+}
+model categories{
+  id         Int @id @default(autoincrement())
+  name        String
+  trainerid    Int
+  trainer    Trainer?  @relation(fields: [trainerid], references: [id]) 
 }
 
 model Training {

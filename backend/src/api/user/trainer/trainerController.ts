@@ -34,7 +34,6 @@ const trainerController={
       phone
       createdAt
       password: hashedPassword,
-      CRE
       status: Status.Active,
       trainer:{
         create:{
