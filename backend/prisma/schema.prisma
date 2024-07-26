@@ -187,6 +187,7 @@ model Chat {
 model Message {
   id       Int  @default(autoincrement()) @id
   chatid   Int
+  senderId Int
   content  String
   sentTime DateTime
   seen     Boolean
