@@ -8,10 +8,10 @@ function TraineeList() {
 
     const filteredTrainees = trainees.filter(trainee => {
         return (
-            trainee.traineeFname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            trainee.traineeLname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            trainee.traineeEmail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            trainee.traineePhonenum.toLowerCase().includes(searchTerm.toLowerCase())
+            (trainee.fname && trainee.fname.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (trainee.lname && trainee.lname.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (trainee.email && trainee.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (trainee.phonenumber && trainee.phonenumber.toLowerCase().includes(searchTerm.toLowerCase()))
         );
     });
 
@@ -52,13 +52,13 @@ function TraineeList() {
                                     className={`transition-all hover:bg-gray-100 hover:w-[110%] ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
                                 >
                                     <td className="px-4 py-3">{index + 1}</td>
-                                    <td className="px-4 py-3">{trainee.traineeFname} {trainee.traineeLname}</td>
-                                    <td className="px-4 py-3">{trainee.traineeAge}</td>
-                                    <td className="px-4 py-3">{trainee.traineegender}</td>
-                                    <td className="px-4 py-3">{trainee.traineeBMI}</td>
-                                    <td className="px-4 py-3">{trainee.traineeEmail}</td>
-                                    <td className="px-4 py-3">{trainee.traineePhonenum}</td>
-                                    <td className="px-4 py-3">{trainee.traineeAddress}</td>
+                                    <td className="px-4 py-3">{trainee.fname} {trainee.lname}</td>
+                                    <td className="px-4 py-3">{trainee.dateOfBirth}</td>
+                                    <td className="px-4 py-3">{trainee.gender}</td>
+                                    <td className="px-4 py-3">{trainee.bmi}</td>
+                                    <td className="px-4 py-3">{trainee.email}</td>
+                                    <td className="px-4 py-3">{trainee.phonenumber}</td>
+                                    <td className="px-4 py-3">{trainee.city}, {trainee.region}</td>
                                     <td className="px-4 py-3">{trainee.medicalInfo}</td>
                                 </tr>
                             ))}

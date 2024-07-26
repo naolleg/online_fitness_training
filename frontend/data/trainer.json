@@ -1,37 +1,34 @@
 {
   "trainers": [
     {
-      "id": "06e1",
-      "trainerFname": "naol",
-      "trainerLname": "legese",
-      "traineremail": "naol@gmail.com",
-      "trainerphonenum": "0988777666",
-      "traineraddress": "addiss ababa",
-      "trainerage": "30",
-      "trainergender": "F",
-      "traineryearofExpriance": "5"
+      "id": "e511",
+      "fname": "chala",
+      "lname": "mmm",
+      "email": "test@example.us",
+      "phonenumber": "0965199682",
+      "city": "Addis Ababa",
+      "dateOfBirth": "2009-01-25",
+      "gender": "M",
+      "region": "CA",
+      "certfication": "C:\\fakepath\\right.png",
+      "yearofExpriance": "996",
+      "introductionVideo": "C:\\fakepath\\New Tab - Google Chrome 2024-07-15 14-38-31.mp4",
+      "categories": "Flexibility"
     },
     {
-      "id": "52fa",
-      "trainerFname": "zerubabel",
-      "trainerLname": "tigistu",
-      "traineremail": "zeru@gmail.com",
-      "trainerphonenum": "0988998899",
-      "traineraddress": "addiss ababa",
-      "trainerage": "35",
-      "trainergender": "M",
-      "traineryearofExpriance": "10"
-    },
-    {
-      "id": "1344",
-      "trainerFname": "nabon",
-      "trainerLname": "grima",
-      "traineremail": "nabon@gmail.com",
-      "trainerphonenum": "0911233445",
-      "traineraddress": "sodo",
-      "trainerage": "30",
-      "trainergender": "M",
-      "traineryearofExpriance": "6"
+      "id": "9e07",
+      "fname": "mahi",
+      "lname": "mesganaw",
+      "email": "sikar@gmail.com",
+      "phonenumber": "0909090909",
+      "city": "Addis ababa",
+      "dateOfBirth": "2001-01-25",
+      "gender": "F",
+      "region": "kirkors",
+      "certfication": "C:\\fakepath\\20240704_103049.jpg",
+      "yearofExpriance": "9",
+      "introductionVideo": "C:\\fakepath\\Snapchat-931518200.mp4",
+      "categories": "Aerobic exercise"
     }
   ]
 }

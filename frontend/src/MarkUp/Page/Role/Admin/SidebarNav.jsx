@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Sidebar } from "flowbite-react";
 import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards, HiMenu } from "react-icons/hi";
 import avatar from '../../../../assets/avater.png'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, Outlet } from 'react-router-dom'
 import Analysis from "./Analysis";
 import TrainerList from "./TrainerList";
 import TraineeList from "./TraineeList";
@@ -89,6 +89,7 @@ export default function SidebarNav({ onhandledashboard, showAnalysis, showtraine
                 </div>
                 <hr className="w-full  mt-1" />
                 <main className=" w-full flex-1 pb-6  pt-16">
+
                     <Right showAdminProfile={showAdminProfile} showAnalysis={showAnalysis} showtrainers={showtrainers} showTrainee={showTrainee} />
                 </main>
             </div>

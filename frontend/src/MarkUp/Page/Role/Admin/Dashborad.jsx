@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Sidebar from './SidebarNav'
 import Right from './Right'
+import { Navigate, Outlet } from 'react-router-dom';
 
 function Dashborad() {
 
@@ -14,17 +15,23 @@ function Dashborad() {
         setShowAnalysis(true);
         setShowtrainers(false)
         setShowtrainee(false)
+        setShowAdminProfile(false)
+
     };
 
     const handleTrainer = () => {
         setShowtrainers(true)
         setShowAnalysis(false);
         setShowtrainee(false)
+        setShowAdminProfile(false)
+
     }
     const handleTrainee = () => {
         setShowtrainee(true)
         setShowtrainers(false)
         setShowAnalysis(false);
+        setShowAdminProfile(false)
+
     }
     const handleAdminProfile = () => {
         setShowAdminProfile(true)
@@ -48,6 +55,8 @@ function Dashborad() {
 
                 />
                 {/* <Right /> */}
+
+
             </div>
 
         </>

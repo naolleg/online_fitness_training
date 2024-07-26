@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import './App.css';
 import TrainerList from './MarkUp/Page/Role/Admin/TrainerList';
 import TrainerRegistration from './MarkUp/Page/Role/Admin/TrainerRegistration';
@@ -24,39 +24,20 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
 
-      <Route
-        path='/admin'
-        element={
-          <ProtectRouth>
-            <Dashborad />
-          </ProtectRouth>
-        }
-      >
+      <Route path='/admin' element={<Dashborad />}>
+
         <Route index element={<Navigate replace to='analysis' />} />
         <Route path='trainerList' element={<TrainerList />} />
         <Route path='analysis' element={<Analysis />} />
         <Route path='traineeList' element={<TraineeList />} />
         <Route path='Profile' element={<AdminProfile />} />
       </Route>
-
       <Route
         path='trainerReg'
-        element={
-         // <ProtectRouth>
-            <TrainerRegistration />
-         // </ProtectRouth>
-        }
-      />
-
+        element={<TrainerRegistration />} />
       <Route
         path='traineeReg'
-        element={
-          <ProtectRouth>
-            <TraineeReg />
-          </ProtectRouth>
-        }
-      />
-
+        element={<TraineeReg />} />
       <Route
         path='popularTrainer'
         element={
@@ -65,15 +46,9 @@ function App() {
           </ProtectRouth>
         }
       />
-
       <Route
         path='trainer'
-        element={
-          <ProtectRouth>
-            <Trainerspage />
-          </ProtectRouth>
-        }
-      />
+        element={<Trainerspage />} />
     </Routes>
   );
 }

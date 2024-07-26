@@ -14,10 +14,10 @@ function TrainerList() {
 
     const filteredTrainers = trainers.filter((trainer) => {
         return (
-            trainer.trainerFname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            trainer.trainerLname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            trainer.traineremail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            trainer.trainerphonenum.toLowerCase().includes(searchTerm.toLowerCase())
+            (trainer.fname && trainer.fname.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (trainer.lname && trainer.lname.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (trainer.email && trainer.email.toLowerCase().includes(searchTerm.toLowerCase())) ||
+            (trainer.phonenumber && trainer.phonenumber.toLowerCase().includes(searchTerm.toLowerCase()))
         );
     });
 
@@ -42,13 +42,15 @@ function TrainerList() {
                     <table className="w-full table-auto text-left">
                         <thead className="bg-gray-200 text-gray-800">
                             <tr>
-                                <th className="px-4 py-3 font-semibold">Id</th>
-                                <th className="px-4 py-3 font-semibold">Full Name</th>
-                                <th className="px-4 py-3 font-semibold">Email</th>
-                                <th className="px-4 py-3 font-semibold">Phone Number</th>
-                                <th className="px-4 py-3 font-semibold">Address</th>
-                                <th className="px-4 py-3 font-semibold">Status</th>
-                                <th className="px-4 py-3 font-semibold">Actions</th>
+                                <th className="px-2 py-3 font-semibold">Id</th>
+                                <th className="px-2 py-3 font-semibold">Full Name</th>
+                                <th className="px-2 py-3 font-semibold">Email</th>
+                                <th className="px-2 py-3 font-semibold">Phone Number</th>
+                                <th className="px-2 py-3 font-semibold">Address</th>
+                                <th className="px-2 py-3 font-semibold">Year of Experience</th>
+                                <th className="px-2 py-3 font-semibold">Categories</th>
+                                <th className="px-2 py-3 font-semibold">Status</th>
+                                <th className="px-2 py-3 font-semibold">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -57,30 +59,32 @@ function TrainerList() {
                                     key={trainer.id}
                                     className={`transition-all hover:bg-gray-300 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
                                 >
-                                    <td className="px-4 py-3">{index + 1}</td>
-                                    <td className="px-4 py-3 flex items-center">
+                                    <td className="px-2 py-3">{index + 1}</td>
+                                    <td className="px-2 py-3 flex items-center">
                                         <img src={avatar} alt="Avatar" className="h-8 w-8 rounded-full mr-2" />
-                                        {trainer.trainerFname} {trainer.trainerLname}
+                                        {trainer.fname} {trainer.lname}
                                     </td>
-                                    <td className="px-4 py-3">{trainer.traineremail}</td>
-                                    <td className="px-4 py-3">{trainer.trainerphonenum}</td>
-                                    <td className="px-4 py-3">{trainer.traineraddress}</td>
-                                    <td className="px-4 py-3">
-                                        <select className="px-4 py-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <td className="px-2 py-3">{trainer.email}</td>
+                                    <td className="px-2 py-3">{trainer.phonenumber}</td>
+                                    <td className="px-2 py-3">{trainer.city},{trainer.region}</td>
+                                    <td className="px-2 py-3">{trainer.yearofExpriance}</td>
+                                    <td className="px-2 py-3">{trainer.categories}</td>
+                                    <td className="px-2 py-3">
+                                        <select className="px-2 py-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                             <option value="active" className="text-green-500 font-medium">Active</option>
                                             <option value="inactive" className="text-red-500 font-medium">Inactive</option>
                                         </select>
                                     </td>
-                                    <td className="px-4 py-3">
-                                        <div className="flex justify-end">
+                                    <td className=" py-3">
+                                        <div className="flex justify-center">
                                             <button
-                                                className=" text-black font-medium py-2 px-4 rounded mr-2"
+                                                className="text-black font-medium py-2 rounded mr-2"
                                                 title="Edit"
                                             >
                                                 <BsPencilSquare />
                                             </button>
                                             <button
-                                                className=" text-black font-medium py-2 px-4 rounded"
+                                                className="text-black font-medium py-2 rounded"
                                                 onClick={() => handleDelete(trainer.id)}
                                                 title="Delete"
                                             >
