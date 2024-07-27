@@ -13,7 +13,8 @@ import AdminProfile from './MarkUp/Page/Role/Admin/AdminProfile';
 import Home from './MarkUp/Page/Common/Home';
 import Trainerspage from './MarkUp/Page/Role/Trainer/Trainerspage';
 import ProtectRouth from './MarkUp/Page/Common/ProtectRouth';
-
+import TrainerProfile from './MarkUp/Page/Role/Trainer/TrainerProfile';
+import Listes from './MarkUp/Page/Role/Trainer/Listes'
 
 
 function App() {
@@ -23,32 +24,20 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
-
       <Route path='/admin' element={<Dashborad />}>
-
         <Route index element={<Navigate replace to='analysis' />} />
         <Route path='trainerList' element={<TrainerList />} />
         <Route path='analysis' element={<Analysis />} />
         <Route path='traineeList' element={<TraineeList />} />
         <Route path='Profile' element={<AdminProfile />} />
       </Route>
-      <Route
-        path='trainerReg'
-        element={<TrainerRegistration />} />
-      <Route
-        path='traineeReg'
-        element={<TraineeReg />} />
-      <Route
-        path='popularTrainer'
-        element={
-          <ProtectRouth>
-            <PopularTrainer />
-          </ProtectRouth>
-        }
-      />
-      <Route
-        path='trainer'
-        element={<Trainerspage />} />
+      <Route path='trainerReg' element={<TrainerRegistration />} />
+      <Route path='traineeReg' element={<TraineeReg />} />
+      <Route path='popularTrainer' element={<PopularTrainer />} />
+      <Route path='trainer' element={<Trainerspage />} >
+        <Route path='trainerProfile' element={<TrainerProfile />} />
+        <Route path='traineelists' element={<Listes />} />
+      </Route>
     </Routes>
   );
 }

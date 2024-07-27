@@ -8,6 +8,7 @@ function TrainerList() {
     const { trainers, deleteuser } = useTrainer();
     const [searchTerm, setSearchTerm] = useState('');
 
+
     const handleDelete = (id) => {
         deleteuser(id);
     };

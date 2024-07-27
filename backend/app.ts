@@ -54,7 +54,7 @@ app.get('/', async (req, res) => {
 });
 
 const startServer = () => {
-   httpServer.listen(PORT || 8080, () => {
+   httpServer.listen(PORT || 8888, () => {
      console.log(`⚙️ Server is running http://${HOST}:${PORT}`);
    });
  };
