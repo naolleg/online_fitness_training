@@ -3,7 +3,7 @@ import cors from 'cors';
 import jwt from "jsonwebtoken";
 import requestIp from "request-ip";
 import { CORS_ORIGIN, HOST, PORT, SECRET } from "./src/config/secrete";
-import  errorHandler  from "./src/middleware/error.js";
+// import  errorHandler  from "./src/middleware/error.js";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
@@ -18,12 +18,13 @@ export const io :Server = new Server(httpServer, {
       origin: CORS_ORIGIN,
    }
 });
+
 app.set("io", io); 
 
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(errorHandler);
+// app.use(errorHandler);
 
 // global middlewares
 app.use(
