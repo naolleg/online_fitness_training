@@ -5,7 +5,7 @@ import traineeController from "./traineeController";
 
 const traineeRouter = Router();
 
-traineeRouter.post('/register',[isTrainee],errorHandler(traineeController.register));
-traineeRouter.put('/update/:id',[isTrainee],errorHandler(traineeController.update));
-traineeRouter.get('/getAll',[isTrainee],errorHandler(traineeController.getAll))
+traineeRouter.post('/register',errorHandler(traineeController.register));
+traineeRouter.put('/update/:id',errorHandler(traineeController.update));
+traineeRouter.get('/getAll',errorHandler(traineeController.getAll))
 export default traineeRouter;
