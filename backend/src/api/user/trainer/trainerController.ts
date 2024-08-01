@@ -115,12 +115,12 @@ const trainerController={
    
     getAll: async (req: Request, res: Response, next: NextFunction) => {
         try {
-          const trainees = await prisma.user.findMany({
+          const trainers = await prisma.user.findMany({
            where:{
             role:"Trainer"
            }
           });
-          res.status(200).json({ success: true, message: "all trainees", trainees });
+          res.status(200).json({ success: true, message: "all trainers", trainers });
         } catch (error) {
           throw error;
         }
