@@ -1,17 +1,57 @@
-import React, { useState } from 'react';
-import { useTrainer } from '../../../../Context/UserContext';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsPencilSquare, BsTrash } from 'react-icons/bs'; // Import icons from react-icons
 import avatar from '../../../../assets/avater.png';
 
 function TrainerList() {
-    const { trainers, deleteuser } = useTrainer();
     const [searchTerm, setSearchTerm] = useState('');
+    const [trainers, setTrainers] = useState([]);
 
+    // useEffect(() => {
+    //     async function fetchTrainers() {
+    //         try {
+    //             const res = await fetch("http://localhost:5173/api/trainer/getAll");
+    //             if (!res.ok) {
+    //                 throw new Error(`HTTP error! status: ${res.status}`);
+    //             }
+    //             const data = await res.json();
+    //             console.log("Fetched trainers:", data);
+    //             setTrainers(data);
+    //         } catch (error) {
+    //             console.error("Error while fetching the data:", error);
+    //         }
+    //     }
 
-    const handleDelete = (id) => {
-        deleteuser(id);
-    };
+    //     fetchTrainers();
+    // }, []);
+
+    useEffect(() => {
+        async function fetchTrainers() {
+            try {
+                const res = await fetch("http://localhost:5173/api/trainer/getAll");
+
+                // Log the response to see what is returned
+                const contentType = res.headers.get('content-type');
+                console.log('Content-Type:', contentType);
+                const text = await res.text();
+                console.log('Response:', text);
+
+                // If the response is JSON, parse it
+                if (contentType && contentType.includes('application/json')) {
+                    const data = JSON.parse(text);
+                    console.log("Fetched trainers:", data);
+                    setTrainers(data);
+                } else {
+                    throw new Error('Response is not JSON');
+                }
+            } catch (error) {
+                console.error("Error while fetching the data:", error);
+            }
+        }
+
+        fetchTrainers();
+    }, []);
+
 
     const filteredTrainers = trainers.filter((trainer) => {
         return (
@@ -76,19 +116,12 @@ function TrainerList() {
                                             <option value="inactive" className="text-red-500 font-medium">Inactive</option>
                                         </select>
                                     </td>
-                                    <td className=" py-3">
+                                    <td className="py-3">
                                         <div className="flex justify-center">
-                                            <button
-                                                className="text-black font-medium py-2 rounded mr-2"
-                                                title="Edit"
-                                            >
+                                            <button className="text-black font-medium py-2 rounded mr-2" title="Edit">
                                                 <BsPencilSquare />
                                             </button>
-                                            <button
-                                                className="text-black font-medium py-2 rounded"
-                                                onClick={() => handleDelete(trainer.id)}
-                                                title="Delete"
-                                            >
+                                            <button>
                                                 <BsTrash />
                                             </button>
                                         </div>
