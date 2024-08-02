@@ -12,37 +12,41 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
 model Admin {
-  id       Int   @default(autoincrement()) @id
+  id       Int    @id @default(autoincrement())
   fname    String
   lname    String
   username String
-  email    String   @unique
+  email    String @unique
   password String
-  users    User[]
-  quiz Quiz[]
+  // users    User[]
+  quiz     Quiz[]
+  User     User[]
 }
 
 model User {
-  id       Int  @default(autoincrement()) @id
-  fname    String
-  phoneNumber  String
-  lname    String
-  email    String   @unique
-  password String
-  imageurl String?
-  createdAt  DateTime @default(now())
-  role     Role     @default(Trainee)
-  gender   Gender?
-  dateOfBirth     DateTime?
-  status   Status?
-  admin    Admin?   @relation(fields: [id], references: [id])
-  trainer  Trainer?
-  trainee  Trainee?
-  addresses Address[]
-  message  Message[]
-  chats     Chat[]
+  id            Int            @id @default(autoincrement())
+  fname         String
+  phoneNumber   String
+  lname         String
+  email         String         @unique
+  password      String
+  imageurl      String?
+  createdAt     DateTime       @default(now())
+  role          Role           @default(Trainee)
+  gender        Gender?
+  dateOfBirth   DateTime?
+  status        Status?
+  // admin    Admin?   @relation(fields: [id], references: [id])
+  trainer       Trainer?
+  trainee       Trainee?
+  addresses     Address[]
+  message       Message[]
+  chats         Chat[]
   notifications Notification[]
+  Admin         Admin?         @relation(fields: [adminId], references: [id])
+  adminId       Int?
 }
 
 enum Role {
@@ -62,50 +66,50 @@ enum Status {
 }
 
 model Trainer {
-  id           Int   @default(autoincrement()) @id
-  user         User     @relation(fields: [id], references: [id])
-  certification String
+  id                 Int          @id @default(autoincrement())
+  user               User         @relation(fields: [id], references: [id])
+  certification      String
   introduction_video String
-  experience  String
-  schedules Schedule[]
-  progress Progress[]
-  training Training[]
-  categories  categories[]
-  
+  experience         String
+  schedules          Schedule[]
+  progress           Progress[]
+  training           Training[]
+  categories         categories[]
 }
 
 model Trainee {
-  id         Int   @default(autoincrement()) @id
-  user       User     @relation(fields: [id], references: [id])
+  id             Int             @id @default(autoincrement())
+  user           User            @relation(fields: [id], references: [id])
   trainee_status TraineeStatus[]
-  schedules Schedule[]
-  progress Progress[]
-  training Training[]
-  mealplan MealPlan[]
+  schedules      Schedule[]
+  progress       Progress[]
+  training       Training[]
+  mealplan       MealPlan[]
 }
 
 model TraineeStatus {
-  id         Int @id @default(autoincrement())
-  traineeid   Int
-  height     Float
-  weight     Float
-  BMI        Float
-  allergies  String
+  id                 Int     @id @default(autoincrement())
+  traineeid          Int
+  height             Float
+  weight             Float
+  BMI                Float
+  allergies          String
   medical_conditions String
-  medications String
-   trainee    Trainee  @relation(fields: [traineeid], references: [id])
+  medications        String
+  trainee            Trainee @relation(fields: [traineeid], references: [id])
 }
-model categories{
-  id         Int @id @default(autoincrement())
-  name        String
-  trainerid    Int
-  trainer    Trainer?  @relation(fields: [trainerid], references: [id]) 
+
+model categories {
+  id        Int      @id @default(autoincrement())
+  name      String
+  trainerid Int
+  trainer   Trainer? @relation(fields: [trainerid], references: [id])
 }
 
 model Training {
-  id         Int   @default(autoincrement()) @id
-  traineeid   Int
-  trainerid   Int
+  id         Int      @id @default(autoincrement())
+  traineeid  Int
+  trainerid  Int
   start_date DateTime
   end_date   DateTime
   categories String
@@ -114,98 +118,98 @@ model Training {
 }
 
 model Address {
-  id     Int  @default(autoincrement()) @id
+  id     Int    @id @default(autoincrement())
   city   String
   region String
-  user   User     @relation(fields: [id], references: [id])
+  user   User   @relation(fields: [id], references: [id])
 }
 
 model Schedule {
- id Int @id @default(autoincrement())
- trainerid Int
- traineeid Int
-  created_date DateTime
+  id            Int           @id @default(autoincrement())
+  trainerid     Int
+  traineeid     Int
+  created_date  DateTime
   schedule_date DateTime
-  workout_plan WorkoutPlan[]
-    trainer    Trainer  @relation(fields: [trainerid], references: [id])
-  trainee    Trainee  @relation(fields: [traineeid], references: [id])
+  workout_plan  WorkoutPlan[]
+  trainer       Trainer       @relation(fields: [trainerid], references: [id])
+  trainee       Trainee       @relation(fields: [traineeid], references: [id])
 }
 
 model WorkoutPlan {
- id Int @id @default(autoincrement())
-  name       String
+  id          Int        @id @default(autoincrement())
+  name        String
   description String
-  exercises Exercise[]
-  schedules Schedule[]
+  exercises   Exercise[]
+  schedules   Schedule[]
 }
 
 model Exercise {
- id Int @id @default(autoincrement())
-  name       String
-  description String
-  benefits    String
-  how_to_guide String
+  id            Int           @id @default(autoincrement())
+  name          String
+  description   String
+  benefits      String
+  how_to_guide  String
   workout_plans WorkoutPlan[]
 }
 
 model MealPlan {
- id Int @id @default(autoincrement())
- traineeid  Int
-  trainee    Trainee  @relation(fields: [traineeid], references: [id])
+  id             Int     @id @default(autoincrement())
+  traineeid      Int
+  trainee        Trainee @relation(fields: [traineeid], references: [id])
   meal_plan_data String
 }
 
 model Quiz {
-  id       Int   @default(autoincrement()) @id
-  adminid   Int
+  id       Int    @id @default(autoincrement())
+  adminid  Int
   question String
 
- admin    Admin    @relation(fields: [adminid], references: [id])
- }
+  admin Admin @relation(fields: [adminid], references: [id])
+}
 
 model Progress {
- id Int @id @default(autoincrement())
-  trainerid Int
- traineeid Int
+  id            Int     @id @default(autoincrement())
+  trainerid     Int
+  traineeid     Int
   progress_rate Float
   progress_data String
-  trainer    Trainer  @relation(fields: [trainerid], references: [id])
-  trainee    Trainee  @relation(fields: [traineeid], references: [id])
+  trainer       Trainer @relation(fields: [trainerid], references: [id])
+  trainee       Trainee @relation(fields: [traineeid], references: [id])
 }
 
 model Chat {
- id Int @id @default(autoincrement())
-  userid Int
-  name       String
-  isGroup    Boolean
+  id            Int       @id @default(autoincrement())
+  userid        Int
+  name          String
+  isGroup       Boolean
   lastMessageId String
-  createdAt  DateTime
-  messages   Message[]
-  user      User?   @relation(fields: [userid], references: [id])
+  createdAt     DateTime
+  messages      Message[]
+  user          User?     @relation(fields: [userid], references: [id])
 }
 
 model Message {
-  id       Int  @default(autoincrement()) @id
-  chatid   Int
-  senderId Int
-  content  String
-  sentTime DateTime
-  seen     Boolean
+  id          Int                 @id @default(autoincrement())
+  chatid      Int
+  senderId    Int
+  content     String
+  sentTime    DateTime
+  seen        Boolean
   attachments MessageAttachment[]
-   chat     Chat     @relation(fields: [chatid], references: [id])
-   sender   User     @relation(fields: [id], references: [id])
+  chat        Chat                @relation(fields: [chatid], references: [id])
+  sender      User                @relation(fields: [id], references: [id])
 }
 
 model MessageAttachment {
-  id       Int   @default(autoincrement()) @id
-  url      String
-  message  Message  @relation(fields: [id], references: [id])
+  id      Int     @id @default(autoincrement())
+  url     String
+  message Message @relation(fields: [id], references: [id])
 }
 
 model Notification {
-  id       Int   @default(autoincrement()) @id
-  user     User     @relation(fields: [id], references: [id])
-  message  String
-  createdAt  DateTime
-  seen     Boolean
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [id], references: [id])
+  message   String
+  createdAt DateTime
+  seen      Boolean
 }

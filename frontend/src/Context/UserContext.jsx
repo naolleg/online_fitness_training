@@ -36,12 +36,12 @@ function Userprovider({ children }) {
     useEffect(() => {
         async function fetchtrainersData() {
             try {
-                const res = await fetch(`${Base_urlTrainer}/trainers`);
-                const data = await res.json();
-                console.log(data);
-                setTrainer(data);
+                // const res = await fetch(`${Base_urlTrainer}/trainers`);
+                // const data = await res.json();
+                // console.log(data);
+                // setTrainer(data);
             } catch (error) {
-                throw new Error("Error while fetching trainers data");
+                // throw new Error("Error while fetching trainers data");
             }
         }
         fetchtrainersData();
@@ -72,32 +72,32 @@ function Userprovider({ children }) {
                 },
             });
             const data = await res.json();
-            console.log(data);
-            setTrainer([...trainers, trainerInfo]);
+            // console.log(data);
+            // setTrainer([...trainers, trainerInfo]);
             // navigate('/admin/trainerList');
         } catch {
-            throw new Error("There was an error adding user data...");
+            // throw new Error("There was an error adding user data...");
         }
     }
 
     async function deleteuser(id) {
         try {
             await fetch(`${Base_urlTrainer}/trainers/${id}`, { method: "DELETE" });
-            setTrainer((user) => user.filter((users) => users.id !== id));
+            // setTrainer((user) => user.filter((users) => users.id !== id));
         } catch (error) {
-            throw new Error("There was an error deleting user");
+            // throw new Error("There was an error deleting user");
         }
     }
 
     useEffect(() => {
         async function fetchtraineesData() {
             try {
-                const res = await fetch(`${Base_urlTrainee}/trainee`);
-                const data = await res.json();
-                console.log(data);
-                setTrainees(data);
+                // const res = await fetch(`${Base_urlTrainee}/trainee`);
+                // const data = await res.json();
+                // console.log(data);
+                // setTrainees(data);
             } catch (error) {
-                throw new Error("Error while fetching trainee data");
+                // throw new Error("Error while fetching trainee data");
             }
         }
         fetchtraineesData();
@@ -131,11 +131,11 @@ function Userprovider({ children }) {
                 },
             });
             const data = await res.json();
-            console.log(data);
-            setTrainees([...trainees, traineeInfo]);
-            navigate('/admin/traineeList');
+            // console.log(data);
+            // setTrainees([...trainees, traineeInfo]);
+            // navigate('/admin/traineeList');
         } catch {
-            throw new Error("There was an error adding user data...");
+            // throw new Error("There was an error adding user data...");
         }
     }
 

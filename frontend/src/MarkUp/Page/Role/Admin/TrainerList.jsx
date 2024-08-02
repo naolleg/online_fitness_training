@@ -30,20 +30,12 @@ function TrainerList() {
             try {
                 const res = await fetch("http://localhost:5173/api/trainer/getAll");
 
-                // Log the response to see what is returned
-                const contentType = res.headers.get('content-type');
-                console.log('Content-Type:', contentType);
-                const text = await res.text();
-                console.log('Response:', text);
+                const data = await res.json()
+                console.log("Fetched trainers:", data);
+                setTrainers(data);
 
-                // If the response is JSON, parse it
-                if (contentType && contentType.includes('application/json')) {
-                    const data = JSON.parse(text);
-                    console.log("Fetched trainers:", data);
-                    setTrainers(data);
-                } else {
-                    throw new Error('Response is not JSON');
-                }
+                throw new Error('Response is not JSON');
+
             } catch (error) {
                 console.error("Error while fetching the data:", error);
             }
