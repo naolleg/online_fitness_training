@@ -28,7 +28,7 @@ function TrainerList() {
     useEffect(() => {
         async function fetchTrainers() {
             try {
-                const res = await fetch("http://localhost:5173/api/trainer/getAll");
+                const res = await fetch("http://localhost:8888/api/trainer/getAll");
 
                 const data = await res.json()
                 console.log("Fetched trainers:", data);

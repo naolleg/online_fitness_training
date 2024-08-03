@@ -27,15 +27,15 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(errorHandler);
 
 // global middlewares
-app.use(
-   cors({
-     origin:
-       process.env.CORS_ORIGIN === "*"
-         ? "*" 
-         : process.env.CORS_ORIGIN?.split(","), 
-     credentials: true,
-   })
- );
+// app.use(
+//    cors({
+//      origin:
+//        process.env.CORS_ORIGIN === "*"
+//          ? "*" 
+//          : process.env.CORS_ORIGIN?.split(","), 
+//      credentials: true,
+//    })
+//  );
 
  app.use(requestIp.mw());
  app.use(express.static("public"));
