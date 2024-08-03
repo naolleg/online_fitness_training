@@ -25,25 +25,21 @@ function TrainerList() {
     //     fetchTrainers();
     // }, []);
 
+   
     useEffect(() => {
         async function fetchTrainers() {
             try {
                 const res = await fetch("http://localhost:8888/api/trainer/getAll");
-
-                const data = await res.json()
+                const data = await res.json();
                 console.log("Fetched trainers:", data);
-                setTrainers(data);
-
-                throw new Error('Response is not JSON');
-
+                setTrainers(data.trainers); // Assuming data.trainers is the array of trainers
             } catch (error) {
                 console.error("Error while fetching the data:", error);
             }
         }
-
+    
         fetchTrainers();
     }, []);
-
 
     const filteredTrainers = trainers.filter((trainer) => {
         return (

@@ -13,10 +13,10 @@ const httpServer = createServer(app);
 //prepare io
 export const io :Server = new Server(httpServer, {
    pingTimeout: 60000,
-   cors:{
-      credentials:true,
-      origin: CORS_ORIGIN,
-   }
+  //  cors:{
+  //     credentials:true,
+  //     origin: CORS_ORIGIN,
+  //  }
 });
 
 app.set("io", io); 
@@ -26,19 +26,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(errorHandler);
 
-// global middlewares
-// app.use(
-//    cors({
-//      origin:
-//        process.env.CORS_ORIGIN === "*"
-//          ? "*" 
-//          : process.env.CORS_ORIGIN?.split(","), 
-//      credentials: true,
-//    })
-//  );
+app.use(cors())
 
  app.use(requestIp.mw());
  app.use(express.static("public"));
+
+ 
 
 
 // Routes
