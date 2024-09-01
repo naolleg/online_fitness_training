@@ -15,14 +15,17 @@ CREATE TABLE `Admin` (
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `fname` VARCHAR(191) NOT NULL,
+    `phoneNumber` VARCHAR(191) NOT NULL,
     `lname` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `password` VARCHAR(191) NOT NULL,
     `imageurl` VARCHAR(191) NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `role` ENUM('Admin', 'Trainer', 'Trainee') NOT NULL DEFAULT 'Trainee',
     `gender` ENUM('Male', 'Female') NULL,
     `dateOfBirth` DATETIME(3) NULL,
     `status` ENUM('Active', 'Inactive') NULL,
+    `adminId` INTEGER NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
@@ -32,8 +35,8 @@ CREATE TABLE `User` (
 CREATE TABLE `Trainer` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `certification` VARCHAR(191) NOT NULL,
-    `specialization` VARCHAR(191) NOT NULL,
     `introduction_video` VARCHAR(191) NOT NULL,
+    `experience` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -51,9 +54,19 @@ CREATE TABLE `TraineeStatus` (
     `traineeid` INTEGER NOT NULL,
     `height` DOUBLE NOT NULL,
     `weight` DOUBLE NOT NULL,
+    `BMI` DOUBLE NOT NULL,
     `allergies` VARCHAR(191) NOT NULL,
     `medical_conditions` VARCHAR(191) NOT NULL,
     `medications` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `categories` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `trainerid` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -155,6 +168,7 @@ CREATE TABLE `Chat` (
 CREATE TABLE `Message` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `chatid` INTEGER NOT NULL,
+    `senderId` INTEGER NOT NULL,
     `content` VARCHAR(191) NOT NULL,
     `sentTime` DATETIME(3) NOT NULL,
     `seen` BOOLEAN NOT NULL,
@@ -199,7 +213,7 @@ CREATE TABLE `_ExerciseToWorkoutPlan` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `User` ADD CONSTRAINT `User_id_fkey` FOREIGN KEY (`id`) REFERENCES `Admin`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `User` ADD CONSTRAINT `User_adminId_fkey` FOREIGN KEY (`adminId`) REFERENCES `Admin`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Trainer` ADD CONSTRAINT `Trainer_id_fkey` FOREIGN KEY (`id`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -209,6 +223,9 @@ ALTER TABLE `Trainee` ADD CONSTRAINT `Trainee_id_fkey` FOREIGN KEY (`id`) REFERE
 
 -- AddForeignKey
 ALTER TABLE `TraineeStatus` ADD CONSTRAINT `TraineeStatus_traineeid_fkey` FOREIGN KEY (`traineeid`) REFERENCES `Trainee`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `categories` ADD CONSTRAINT `categories_trainerid_fkey` FOREIGN KEY (`trainerid`) REFERENCES `Trainer`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Training` ADD CONSTRAINT `Training_traineeid_fkey` FOREIGN KEY (`traineeid`) REFERENCES `Trainee`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
