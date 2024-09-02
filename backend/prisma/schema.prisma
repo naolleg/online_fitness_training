@@ -43,7 +43,7 @@ model User {
   trainee       Trainee?
   addresses     Address[]
   message       Message[]
-  chats         Chat[]
+  participantInChats Chat[] @relation("ParticipantInChats")
   notifications Notification[]
   Admin         Admin?         @relation(fields: [adminId], references: [id])
   adminId       Int?
@@ -179,13 +179,12 @@ model Progress {
 
 model Chat {
   id            Int       @id @default(autoincrement())
-  userid        Int
   name          String
   isGroup       Boolean
   lastMessageId String
   createdAt     DateTime
   messages      Message[]
-  user          User?     @relation(fields: [userid], references: [id])
+  participants User[] @relation("ParticipantInChats")
 }
 
 model Message {

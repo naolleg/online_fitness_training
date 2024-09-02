@@ -20,14 +20,13 @@ const Navbar = () => {
                         <span className="font-semibold text-xl text-white dark:text-white">Logo</span>
                     </div>
                     <div className="hidden md:flex space-x-4 ">
-                        <a href="#" className="text-white dark:text-white hover:text-blue-500">Home</a>
+                        <a href="" className="text-white dark:text-white hover:text-blue-500">Home</a>
                         <a href="#" className="text-white dark:text-white hover:text-blue-500">Program</a>
                         <a href="#" className="text-white dark:text-white hover:text-blue-500">Trainers</a>
                         <a href="#" className="text-white dark:text-white hover:text-blue-500">Contact</a>
                     </div>
                     <div className="flex items-center">
-                        <button className='bg-white duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-200 text-[#345671] text-sm  py-1 px-2 mx-4 rounded-[5px] dark:text-white dark:bg-gray-900'>Login</button>
-
+                    <a href="/login"className='bg-white duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-200 text-[#345671] text-sm  py-1 px-2 mx-4 rounded-[5px] dark:text-white dark:bg-gray-900'>Login</a>
                         <button
                             onClick={() => setDarkMode(!darkMode)}
                             className="focus:outline-none text-white dark:text-white"

@@ -69,7 +69,7 @@ function Login() {
                             </div>
                             <button type="submit" className="w-full text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login to your account</button>
                             <div className="text-sm font-medium text-gray-800">
-                                Not registered? <a href="#" className="hover:underline text-red-900">Create account</a>
+                                Not registered? <a href="/traineeReg" className="hover:underline text-red-900">Create account</a>
                             </div>
                         </form>
                     </div>
